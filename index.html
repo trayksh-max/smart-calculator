@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCalc | The Next-Gen Smart Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header / Brand -->
+        <header>
+            <div class="logo">NOVA<span>CALC</span></div>
+            <div class="mode-switch">
+                <span id="mode-label">Standard Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- History Panel (The "Smart Tape") -->
+            <aside class="history-panel" id="history-panel">
+                <h3><span class="icon">📜</span> Smart Tape</h3>
+                <div class="history-list" id="history-list">
+                    <!-- History items will be added here -->
+                    <div class="history-placeholder">No calculations yet. Start crunching numbers!</div>
+                </div>
+                <button class="clear-history" id="clear-history">Clear Tape</button>
+            </aside>
+
+            <!-- Variable Rules Panel (The "Genius" Section) -->
+            <aside class="rules-panel" id="rules-panel">
+                <h3><span class="icon">⚙️</span> Variable Rules</h3>
+                <p class="rules-hint">Define rules like <br><strong>y = 2x</strong> or <strong>z = x + 5</strong></p>
+                <div class="rules-input-container">
+                    <input type="text" id="rule-input" placeholder="e.g. y = 2x">
+                    <button id="add-rule-btn">Add</button>
+                </div>
+                <div class="rules-list" id="rules-list">
+                    <!-- Rules will be added here -->
+                </div>
+                <button class="clear-rules" id="clear-rules">Reset Rules</button>
+            </aside>
+
+            <!-- Calculator Main Area -->
+            <section class="calc-section">
+                <div class="display-container">
+                    <div class="expression-display" id="expression"></div>
+                    <div class="result-display" id="result">0</div>
+                </div>
+
+                <div class="keypad">
+                    <!-- Row 1 -->
+                    <button class="btn-action" onclick="clearAll()">AC</button>
+                    <button class="btn-action" onclick="deleteLast()">DEL</button>
+                    <button class="btn-operator" onclick="appendOperator('%')">%</button>
+                    <button class="btn-operator" onclick="appendOperator('/')">÷</button>
+
+                    <!-- Row 2 -->
+                    <button class="btn-num" onclick="appendNumber('7')">7</button>
+                    <button class="btn-num" onclick="appendNumber('8')">8</button>
+                    <button class="btn-num" onclick="appendNumber('9')">9</button>
+                    <button class="btn-operator" onclick="appendOperator('*')">×</button>
+
+                    <!-- Row 3 -->
+                    <button class="btn-num" onclick="appendNumber('4')">4</button>
+                    <button class="btn-num" onclick="appendNumber('5')">5</button>
+                    <button class="btn-num" onclick="appendNumber('6')">6</button>
+                    <button class="btn-operator" onclick="appendOperator('-')">−</button>
+
+                    <!-- Row 4 -->
+                    <button class="btn-num" onclick="appendNumber('1')">1</button>
+                    <button class="btn-num" onclick="appendNumber('2')">2</button>
+                    <button class="btn-num" onclick="appendNumber('3')">3</button>
+                    <button class="btn-operator" onclick="appendOperator('+')">+</button>
+
+                    <!-- Row 5 -->
+                    <button class="btn-num zero" onclick="appendNumber('0')">0</button>
+                    <button class="btn-num" onclick="appendNumber('.')">.</button>
+                    <button class="btn-equal" id="equal-btn" onclick="calculate()">=</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Educational Breakdown Panel (The "Smarter" Part) -->
+        <div class="breakdown-panel" id="breakdown-panel">
+            <div class="breakdown-header">
+                <h3><span class="icon">💡</span> Step-by-Step Breakdown</h3>
+                <button class="close-breakdown" onclick="closeBreakdown()">×</button>
+            </div>
+            <div class="breakdown-content" id="breakdown-content">
+                <p class="placeholder-text">Calculate something to see the magic happen!</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
